@@ -1,0 +1,38 @@
+apply plugin: 'maven-publish'
+apply plugin: 'com.jfrog.bintray'
+apply from: 'bintray_variables.gradle'
+apply from: '../mytasks.gradle'
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+                artifact sourcesJar
+                groupId publishedGroupId
+                version libraryVersion
+                artifactId artifactName
+            }
+        }
+
+        bintray {
+            user = project.property('bintray.user')
+            key = project.property('bintray.token')
+            publications = ['release']
+            publish = true
+            override = true
+            pkg {
+                repo = bintrayRepo
+                name = artifactName
+                desc = libraryDescription
+                licenses = allLicenses
+                vcsUrl = gitUrl
+                publicDownloadNumbers = true
+                version {
+                    name = libraryVersion
+                    released = new Date()
+                }
+            }
+        }
+    }
+}

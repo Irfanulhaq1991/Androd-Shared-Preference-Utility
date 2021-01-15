@@ -1,0 +1,8 @@
+ext {
+    libraryName = 'SharedPref'
+    artifactName = 'sharedpref'
+    libraryDescription = 'This is wrapper arround shareprefences to avoid boiler plate code and facilitate its use.'
+    siteUrl = 'https://github.com/haramjan/sharedpref'
+    gitUrl =  'https://github.com/haramjan/sharedpref.git'
+    libraryVersion = '1.0.0'
+}
